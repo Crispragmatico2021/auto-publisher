@@ -1,3 +1,5 @@
 .pm2/
 .lesshst
 *.log
+pm2.log
+*.log
