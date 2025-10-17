@@ -2,4 +2,4 @@
 .lesshst
 *.log
 pm2.log
-*.log
+.ssh/
