@@ -1,0 +1,9 @@
+{
+  "accessToken": "EAALtqR9N4WwBPr6os8Kb2HVo9vLN2NHBxWks1CuxtQsav4E1qC9aE0oFBS4ZCF0lwZBvOb8GEZChduRZAjkD1zhe2XnZAUW9ZBgoPhbbheKJTyMDtiPPgzzlli036nK4pTohpLhcYhx01uTmCQOXFHWSCZCElILnJ8S5ZBEWBppAZCJtvjrLJKoI9IoFYEQ8ZBR8gNu7a1BioCMZCZAoS2UmPiruulxRFfU7ZBEK9DAZDZD",
+  "pageId": "https://www.facebook.com/share/1Ck2Aa1vJE/",
+  "groups": [],
+  "schedule": {
+    "enabled": true,
+    "interval": 60
+  }
+}
