@@ -1,0 +1,10 @@
+#!/bin/bash
+export DISPLAY=:1
+
+# Iniciar XFCE componentes manualmente
+xfwm4 &
+xfdesktop &
+xfce4-panel &
+xfce4-session &
+thunar --daemon &
+xfce4-terminal &

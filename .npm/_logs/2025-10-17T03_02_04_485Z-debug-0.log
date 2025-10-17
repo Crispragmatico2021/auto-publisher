@@ -1,0 +1,40 @@
+0 verbose cli /data/data/com.termux/files/usr/bin/node /data/data/com.termux/files/usr/bin/npm
+1 info using npm@11.6.0
+2 info using node@v24.9.0
+3 silly config load:file:/data/data/com.termux/files/usr/lib/node_modules/npm/npmrc
+4 silly config load:file:/data/data/com.termux/files/home/facebook-autopublisher/.npmrc
+5 silly config load:file:/data/data/com.termux/files/home/.npmrc
+6 silly config load:file:/data/data/com.termux/files/usr/etc/npmrc
+7 verbose title npm init
+8 verbose argv "init" "--yes"
+9 verbose logfile logs-max:10 dir:/data/data/com.termux/files/home/.npm/_logs/2025-10-17T03_02_04_485Z-
+10 verbose logfile /data/data/com.termux/files/home/.npm/_logs/2025-10-17T03_02_04_485Z-debug-0.log
+11 silly logfile start cleaning logs, removing 1 files
+12 silly logfile done cleaning log files
+13 silly package data {
+13 silly package data   name: 'facebook-autopublisher',
+13 silly package data   version: '1.0.0',
+13 silly package data   main: 'app.js',
+13 silly package data   dependencies: {
+13 silly package data     axios: '^1.12.2',
+13 silly package data     fs: '^0.0.1-security',
+13 silly package data     https: '^1.0.0',
+13 silly package data     'node-fetch': '^2.7.0',
+13 silly package data     path: '^0.12.7'
+13 silly package data   },
+13 silly package data   description: '',
+13 silly package data   devDependencies: {},
+13 silly package data   scripts: { test: 'echo "Error: no test specified" && exit 1' },
+13 silly package data   keywords: [],
+13 silly package data   author: '',
+13 silly package data   license: 'ISC',
+13 silly package data   type: 'commonjs',
+13 silly package data   Symbol(newline): '\n',
+13 silly package data   Symbol(indent): '  '
+13 silly package data }
+14 verbose cwd /data/data/com.termux/files/home/facebook-autopublisher
+15 verbose os Linux 5.4.289-qgki-g634a7f715748
+16 verbose node v24.9.0
+17 verbose npm  v11.6.0
+18 verbose exit 0
+19 info ok
