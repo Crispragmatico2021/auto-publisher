@@ -49,3 +49,4 @@ node_modules/
 *.apk
 bfg.jar
 auto-publisher/
+.config/nvim.bak/
