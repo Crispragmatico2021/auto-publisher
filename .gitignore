@@ -48,3 +48,4 @@ node_modules/
 .git.bfg-report/
 *.apk
 bfg.jar
+auto-publisher/
