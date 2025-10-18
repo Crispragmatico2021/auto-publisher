@@ -4,3 +4,6 @@
 pm2.log
 .ssh/
 .env
+.config/nvim.bak/
+.local/state/
+.cache/
