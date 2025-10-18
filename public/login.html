@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - AutoPublisher</title>
+    <link rel="stylesheet" href="css/auth.css">
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-card">
+            <div class="logo">
+                <h1>🤖 AutoPublisher</h1>
+                <p>Gestiona tus publicaciones de Facebook automáticamente</p>
+            </div>
+            
+            <div class="features">
+                <div class="feature">
+                    <span class="icon">📅</span>
+                    <span>Programa publicaciones</span>
+                </div>
+                <div class="feature">
+                    <span class="icon">🎬</span>
+                    <span>Multimedia completo</span>
+                </div>
+                <div class="feature">
+                    <span class="icon">📊</span>
+                    <span>Estadísticas en tiempo real</span>
+                </div>
+                <div class="feature">
+                    <span class="icon">🔐</span>
+                    <span>Autenticación segura</span>
+                </div>
+            </div>
+
+            <div class="login-options">
+                <a href="/auth/facebook" class="facebook-login-btn">
+                    <span class="fb-icon">📘</span>
+                    Continuar con Facebook
+                </a>
+                
+                <div class="divider">
+                    <span>o</span>
+                </div>
+
+                <div class="manual-login">
+                    <h3>Acceso Manual</h3>
+                    <p>Usa tu token de acceso directamente</p>
+                    <button onclick="showManualLogin()" class="manual-btn">
+                        🔑 Usar Token Manual
+                    </button>
+                </div>
+            </div>
+
+            <div class="manual-login-form" id="manualLoginForm" style="display: none;">
+                <h3>Acceso con Token</h3>
+                <div class="form-group">
+                    <label>Token de Acceso Facebook:</label>
+                    <textarea id="manualToken" placeholder="EAALtqR9N4WwBO..." rows="4"></textarea>
+                </div>
+                <button onclick="loginWithToken()" class="btn-primary">
+                    🔑 Conectar con Token
+                </button>
+            </div>
+
+            <div class="footer">
+                <p>Al continuar, aceptas nuestros <a href="#">Términos de Servicio</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showManualLogin() {
+            document.getElementById('manualLoginForm').style.display = 'block';
+        }
+
+        async function loginWithToken() {
+            const token = document.getElementById('manualToken').value.trim();
+            
+            if (!token) {
+                alert('Por favor ingresa un token de acceso');
+                return;
+            }
+
+            try {
+                const response = await fetch('/auth/token', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    'X-Requested-With': 'XMLHttpRequest'
+                    },
+                    body: JSON.stringify({ token: token })
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    window.location.href = '/dashboard';
+                } else {
+                    alert('Error: ' + data.error);
+                }
+            } catch (error) {
+                alert('Error de conexión: ' + error.message);
+            }
+        }
+
+        // Verificar si ya está autenticado
+        async function checkAuth() {
+            try {
+                const response = await fetch('/auth/user');
+                const data = await response.json();
+                
+                if (data.authenticated) {
+                    window.location.href = '/dashboard';
+                }
+            } catch (error) {
+                console.log('No autenticado');
+            }
+        }
+
+        // Verificar autenticación al cargar la página
+        checkAuth();
+    </script>
+</body>
+</html>

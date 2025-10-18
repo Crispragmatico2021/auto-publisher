@@ -1,0 +1,11 @@
+{
+  "accessToken": "TU_TOKEN_AQUI",
+  "apiBaseUrl": "https://graph.facebook.com",
+  "apiVersion": "v18.0",
+  "pageId": "",
+  "groups": [],
+  "schedule": {
+    "enabled": true,
+    "interval": 60
+  }
+}

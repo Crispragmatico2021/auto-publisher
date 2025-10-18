@@ -1,6 +1,8 @@
 {
-  "accessToken": "EAALtqR9N4WwBPr6os8Kb2HVo9vLN2NHBxWks1CuxtQsav4E1qC9aE0oFBS4ZCF0lwZBvOb8GEZChduRZAjkD1zhe2XnZAUW9ZBgoPhbbheKJTyMDtiPPgzzlli036nK4pTohpLhcYhx01uTmCQOXFHWSCZCElILnJ8S5ZBEWBppAZCJtvjrLJKoI9IoFYEQ8ZBR8gNu7a1BioCMZCZAoS2UmPiruulxRFfU7ZBEK9DAZDZD",
-  "pageId": "https://www.facebook.com/share/1Ck2Aa1vJE/",
+  "accessToken": "EAALtqR9N4WwBPvZANzU2jFsoZBLmG35zE1XMs1Gu8ZAEO1UddkmELdxdhi8J9OlxssAZBdgn7nbuDtUZBedk7ZAPPvT82dDWgPV1K0RFVzBujFIShn9j5AiXporKEgzUeIE3GtJU20yGfOGKvPGMz33spBu3ZBDBn5kJfRjQuAJzAHEWSlvgVPCZAgXdp2qRQHjKGSvk8ru29GMQ4x3VBvs9C58udvwDKZCk6twZDZD",
+  "apiBaseUrl": "https://graph.facebook.com",
+  "apiVersion": "v18.0",
+  "pageId": "",
   "groups": [],
   "schedule": {
     "enabled": true,

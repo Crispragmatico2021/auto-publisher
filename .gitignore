@@ -3,3 +3,4 @@
 *.log
 pm2.log
 .ssh/
+.env

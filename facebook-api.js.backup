@@ -1,0 +1,178 @@
+const fetch = require('node-fetch');
+const config = require('./config.js');
+const FormData = require('form-data');
+const fs = require('fs');
+
+class FacebookAPI {
+    constructor() {
+        this.accessToken = process.env.FACEBOOK_ACCESS_TOKEN || config.accessToken;
+        this.baseUrl = `${config.apiBaseUrl}/${config.apiVersion}`;
+    }
+
+    async verifyToken() {
+        try {
+            const response = await fetch(
+                `${this.baseUrl}/me?access_token=${this.accessToken}`
+            );
+            const data = await response.json();
+            return data;
+        } catch (error) {
+            console.error('Error verificando token:', error);
+            return null;
+        }
+    }
+
+    async getGroups() {
+        try {
+            const response = await fetch(
+                `${this.baseUrl}/me/groups?access_token=${this.accessToken}`
+            );
+            const data = await response.json();
+            return data.data || [];
+        } catch (error) {
+            console.error('Error obteniendo grupos:', error);
+            return [];
+        }
+    }
+
+    // Publicar texto simple
+    async postToGroup(groupId, message) {
+        try {
+            const response = await fetch(
+                `${this.baseUrl}/${groupId}/feed`,
+                {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        message: message,
+                        access_token: this.accessToken
+                    })
+                }
+            );
+            const data = await response.json();
+            
+            if (data.id) {
+                console.log(`✅ Publicado en grupo ${groupId}: ${data.id}`);
+                return { success: true, postId: data.id };
+            } else {
+                console.log(`❌ Error: ${data.error.message}`);
+                return { success: false, error: data.error };
+            }
+        } catch (error) {
+            console.error('Error publicando:', error);
+            return { success: false, error: error.message };
+        }
+    }
+
+    // Publicar con imagen por URL
+    async postWithImage(groupId, message, imageUrl) {
+        try {
+            const response = await fetch(
+                `${this.baseUrl}/${groupId}/photos`,
+                {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        message: message,
+                        url: imageUrl,
+                        access_token: this.accessToken
+                    })
+                }
+            );
+            const data = await response.json();
+            
+            if (data.id) {
+                console.log(`✅ Imagen publicada en grupo ${groupId}: ${data.id}`);
+                return { success: true, postId: data.id };
+            } else {
+                console.log(`❌ Error con imagen: ${data.error.message}`);
+                return { success: false, error: data.error };
+            }
+        } catch (error) {
+            console.error('Error publicando imagen:', error);
+            return { success: false, error: error.message };
+        }
+    }
+
+    // Publicar con enlace
+    async postWithLink(groupId, message, link) {
+        try {
+            const response = await fetch(
+                `${this.baseUrl}/${groupId}/feed`,
+                {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        message: message,
+                        link: link,
+                        access_token: this.accessToken
+                    })
+                }
+            );
+            const data = await response.json();
+            
+            if (data.id) {
+                console.log(`✅ Enlace publicado en grupo ${groupId}: ${data.id}`);
+                return { success: true, postId: data.id };
+            } else {
+                console.log(`❌ Error con enlace: ${data.error.message}`);
+                return { success: false, error: data.error };
+            }
+        } catch (error) {
+            console.error('Error publicando enlace:', error);
+            return { success: false, error: error.message };
+        }
+    }
+
+    // Publicación inteligente (detecta automáticamente el tipo)
+    async smartPost(groupId, content) {
+        // Detectar tipo de contenido
+        if (content.imageUrl) {
+            return await this.postWithImage(groupId, content.message, content.imageUrl);
+        } else if (content.link) {
+            return await this.postWithLink(groupId, content.message, content.link);
+        } else {
+            return await this.postToGroup(groupId, content.message);
+        }
+    }
+
+    // Subir video (función básica - requiere más configuración)
+    async postVideo(groupId, message, videoUrl) {
+        try {
+            const response = await fetch(
+                `${this.baseUrl}/${groupId}/videos`,
+                {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        description: message,
+                        file_url: videoUrl,
+                        access_token: this.accessToken
+                    })
+                }
+            );
+            const data = await response.json();
+            
+            if (data.id) {
+                console.log(`✅ Video publicado en grupo ${groupId}: ${data.id}`);
+                return { success: true, postId: data.id };
+            } else {
+                console.log(`❌ Error con video: ${data.error.message}`);
+                return { success: false, error: data.error };
+            }
+        } catch (error) {
+            console.error('Error publicando video:', error);
+            return { success: false, error: error.message };
+        }
+    }
+}
+
+module.exports = FacebookAPI;
