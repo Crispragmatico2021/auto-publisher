@@ -1,0 +1,254 @@
+0 verbose cli /data/data/com.termux/files/usr/bin/node /data/data/com.termux/files/usr/bin/npm
+1 info using npm@11.6.0
+2 info using node@v24.9.0
+3 silly config load:file:/data/data/com.termux/files/usr/lib/node_modules/npm/npmrc
+4 silly config load:file:/data/data/com.termux/files/home/.npmrc
+5 silly config load:file:/data/data/com.termux/files/usr/etc/npmrc
+6 verbose title npm install express ejs
+7 verbose argv "install" "express" "ejs"
+8 verbose logfile logs-max:10 dir:/data/data/com.termux/files/home/.npm/_logs/2025-10-18T08_17_12_264Z-
+9 verbose logfile /data/data/com.termux/files/home/.npm/_logs/2025-10-18T08_17_12_264Z-debug-0.log
+10 silly logfile start cleaning logs, removing 1 files
+11 silly packumentCache heap:1174405120 maxSize:293601280 maxEntrySize:146800640
+12 silly logfile done cleaning log files
+13 silly idealTree buildDeps
+14 silly fetch manifest express@^5.1.0
+15 silly packumentCache full:https://registry.npmjs.org/express cache-miss
+16 http fetch GET 200 https://registry.npmjs.org/express 424ms (cache revalidated)
+17 silly packumentCache full:https://registry.npmjs.org/express set size:796286 disposed:false
+18 silly fetch manifest ejs@*
+19 silly packumentCache full:https://registry.npmjs.org/ejs cache-miss
+20 http fetch GET 200 https://registry.npmjs.org/ejs 723ms (cache miss)
+21 silly packumentCache full:https://registry.npmjs.org/ejs set size:undefined disposed:false
+22 silly placeDep ROOT ejs@3.1.10 OK for: facebook-autopublisher@1.0.0 want: *
+23 silly placeDep ROOT express@5.1.0 REPLACE for: facebook-autopublisher@1.0.0 want: ^5.1.0
+24 silly fetch manifest jake@^10.8.5
+25 silly packumentCache full:https://registry.npmjs.org/jake cache-miss
+26 http fetch GET 200 https://registry.npmjs.org/jake 796ms (cache miss)
+27 silly packumentCache full:https://registry.npmjs.org/jake set size:undefined disposed:false
+28 silly placeDep ROOT jake@10.9.4 OK for: ejs@3.1.10 want: ^10.8.5
+29 silly fetch manifest async@^3.2.6
+30 silly packumentCache full:https://registry.npmjs.org/async cache-miss
+31 silly fetch manifest filelist@^1.0.4
+32 silly packumentCache full:https://registry.npmjs.org/filelist cache-miss
+33 silly fetch manifest picocolors@^1.1.1
+34 silly packumentCache full:https://registry.npmjs.org/picocolors cache-miss
+35 http fetch GET 200 https://registry.npmjs.org/picocolors 90ms (cache miss)
+36 silly packumentCache full:https://registry.npmjs.org/picocolors set size:undefined disposed:false
+37 http fetch GET 200 https://registry.npmjs.org/filelist 198ms (cache miss)
+38 silly packumentCache full:https://registry.npmjs.org/filelist set size:undefined disposed:false
+39 http fetch GET 200 https://registry.npmjs.org/async 225ms (cache revalidated)
+40 silly packumentCache full:https://registry.npmjs.org/async set size:230496 disposed:false
+41 silly placeDep ROOT async@3.2.6 OK for: jake@10.9.4 want: ^3.2.6
+42 silly placeDep ROOT filelist@1.0.4 OK for: jake@10.9.4 want: ^1.0.4
+43 silly placeDep ROOT picocolors@1.1.1 OK for: jake@10.9.4 want: ^1.1.1
+44 silly fetch manifest minimatch@^5.0.1
+45 silly packumentCache full:https://registry.npmjs.org/minimatch cache-miss
+46 http fetch GET 200 https://registry.npmjs.org/minimatch 73ms (cache revalidated)
+47 silly packumentCache full:https://registry.npmjs.org/minimatch set size:298903 disposed:false
+48 silly placeDep ROOT minimatch@5.1.6 OK for: filelist@1.0.4 want: ^5.0.1
+49 silly fetch manifest brace-expansion@^2.0.1
+50 silly packumentCache full:https://registry.npmjs.org/brace-expansion cache-miss
+51 http fetch GET 200 https://registry.npmjs.org/brace-expansion 77ms (cache revalidated)
+52 silly packumentCache full:https://registry.npmjs.org/brace-expansion set size:46250 disposed:false
+53 silly placeDep ROOT brace-expansion@2.0.2 OK for: minimatch@5.1.6 want: ^2.0.1
+54 silly fetch manifest balanced-match@^1.0.0
+55 silly packumentCache full:https://registry.npmjs.org/balanced-match cache-miss
+56 http fetch GET 200 https://registry.npmjs.org/balanced-match 87ms (cache revalidated)
+57 silly packumentCache full:https://registry.npmjs.org/balanced-match set size:33860 disposed:false
+58 silly placeDep ROOT balanced-match@1.0.2 OK for: brace-expansion@2.0.2 want: ^1.0.0
+59 silly reify moves {}
+60 silly audit bulk request {
+60 silly audit   '@redis/bloom': [ '5.8.3' ],
+60 silly audit   '@redis/client': [ '5.8.3' ],
+60 silly audit   '@redis/json': [ '5.8.3' ],
+60 silly audit   '@redis/search': [ '5.8.3' ],
+60 silly audit   '@redis/time-series': [ '5.8.3' ],
+60 silly audit   '@types/debug': [ '4.1.12' ],
+60 silly audit   '@types/ms': [ '2.1.0' ],
+60 silly audit   '@types/node': [ '24.8.1' ],
+60 silly audit   '@types/validator': [ '13.15.3' ],
+60 silly audit   accepts: [ '2.0.0' ],
+60 silly audit   asynckit: [ '0.4.0' ],
+60 silly audit   base64url: [ '3.0.1' ],
+60 silly audit   'body-parser': [ '2.2.0' ],
+60 silly audit   bytes: [ '3.1.2' ],
+60 silly audit   'call-bind-apply-helpers': [ '1.0.2' ],
+60 silly audit   'call-bound': [ '1.0.4' ],
+60 silly audit   'cluster-key-slot': [ '1.1.2' ],
+60 silly audit   'combined-stream': [ '1.0.8' ],
+60 silly audit   'connect-redis': [ '9.0.0' ],
+60 silly audit   'content-disposition': [ '1.0.0' ],
+60 silly audit   'content-type': [ '1.0.5' ],
+60 silly audit   cookie: [ '0.7.2' ],
+60 silly audit   'cookie-signature': [ '1.2.2', '1.0.7' ],
+60 silly audit   debug: [ '4.4.3', '2.6.9' ],
+60 silly audit   'delayed-stream': [ '1.0.0' ],
+60 silly audit   depd: [ '2.0.0' ],
+60 silly audit   dotenv: [ '17.2.3' ],
+60 silly audit   dottie: [ '2.0.6' ],
+60 silly audit   'dunder-proto': [ '1.0.1' ],
+60 silly audit   'ee-first': [ '1.1.1' ],
+60 silly audit   encodeurl: [ '2.0.0' ],
+60 silly audit   'es-define-property': [ '1.0.1' ],
+60 silly audit   'es-errors': [ '1.3.0' ],
+60 silly audit   'es-object-atoms': [ '1.1.1' ],
+60 silly audit   'es-set-tostringtag': [ '2.1.0' ],
+60 silly audit   'escape-html': [ '1.0.3' ],
+60 silly audit   etag: [ '1.8.1' ],
+60 silly audit   'express-session': [ '1.18.2' ],
+60 silly audit   ms: [ '2.0.0', '2.1.3' ],
+60 silly audit   finalhandler: [ '2.1.0' ],
+60 silly audit   'form-data': [ '4.0.4' ],
+60 silly audit   'mime-db': [ '1.52.0', '1.54.0' ],
+60 silly audit   'mime-types': [ '2.1.35', '3.0.1' ],
+60 silly audit   forwarded: [ '0.2.0' ],
+60 silly audit   fresh: [ '2.0.0' ],
+60 silly audit   'function-bind': [ '1.1.2' ],
+60 silly audit   'get-intrinsic': [ '1.3.0' ],
+60 silly audit   'get-proto': [ '1.0.1' ],
+60 silly audit   gopd: [ '1.2.0' ],
+60 silly audit   'has-symbols': [ '1.1.0' ],
+60 silly audit   'has-tostringtag': [ '1.0.2' ],
+60 silly audit   hasown: [ '2.0.2' ],
+60 silly audit   'http-errors': [ '2.0.0' ],
+60 silly audit   statuses: [ '2.0.1', '2.0.2' ],
+60 silly audit   'iconv-lite': [ '0.6.3', '0.7.0' ],
+60 silly audit   inflection: [ '1.13.4' ],
+60 silly audit   inherits: [ '2.0.4' ],
+60 silly audit   'ipaddr.js': [ '1.9.1' ],
+60 silly audit   'is-promise': [ '4.0.0' ],
+60 silly audit   lodash: [ '4.17.21' ],
+60 silly audit   'math-intrinsics': [ '1.1.0' ],
+60 silly audit   'media-typer': [ '1.1.0' ],
+60 silly audit   'merge-descriptors': [ '2.0.0' ],
+60 silly audit   moment: [ '2.30.1' ],
+60 silly audit   'moment-timezone': [ '0.5.48' ],
+60 silly audit   negotiator: [ '1.0.0' ],
+60 silly audit   'node-fetch': [ '2.7.0' ],
+60 silly audit   oauth: [ '0.10.2' ],
+60 silly audit   'object-inspect': [ '1.13.4' ],
+60 silly audit   'on-finished': [ '2.4.1' ],
+60 silly audit   'on-headers': [ '1.1.0' ],
+60 silly audit   once: [ '1.4.0' ],
+60 silly audit   parseurl: [ '1.3.3' ],
+60 silly audit   passport: [ '0.7.0' ],
+60 silly audit   'passport-facebook': [ '3.0.0' ],
+60 silly audit   'passport-oauth2': [ '1.8.0' ],
+60 silly audit   'passport-strategy': [ '1.0.0' ],
+60 silly audit   'path-to-regexp': [ '8.3.0' ],
+60 silly audit   pause: [ '0.0.1' ],
+60 silly audit   pg: [ '8.16.3' ],
+60 silly audit   'pg-cloudflare': [ '1.2.7' ],
+60 silly audit   'pg-connection-string': [ '2.9.1' ],
+60 silly audit   'pg-int8': [ '1.0.1' ],
+60 silly audit   'pg-pool': [ '3.10.1' ],
+60 silly audit   'pg-protocol': [ '1.10.3' ],
+60 silly audit   'pg-types': [ '2.2.0' ],
+60 silly audit   pgpass: [ '1.0.5' ],
+60 silly audit   'postgres-array': [ '2.0.0' ],
+60 silly audit   'postgres-bytea': [ '1.0.0' ],
+60 silly audit   'postgres-date': [ '1.0.7' ],
+60 silly audit   'postgres-interval': [ '1.2.0' ],
+60 silly audit   'proxy-addr': [ '2.0.7' ],
+60 silly audit   qs: [ '6.14.0' ],
+60 silly audit   'random-bytes': [ '1.0.0' ],
+60 silly audit   'range-parser': [ '1.2.1' ],
+60 silly audit   'raw-body': [ '3.0.1' ],
+60 silly audit   redis: [ '5.8.3' ],
+60 silly audit   'retry-as-promised': [ '7.1.1' ],
+60 silly audit   router: [ '2.2.0' ],
+60 silly audit   'safe-buffer': [ '5.2.1' ],
+60 silly audit   'safer-buffer': [ '2.1.2' ],
+60 silly audit   semver: [ '7.7.3' ],
+60 silly audit   send: [ '1.2.0' ],
+60 silly audit   sequelize: [ '6.37.7' ],
+60 silly audit   'sequelize-pool': [ '7.1.0' ],
+60 silly audit   'serve-static': [ '2.2.0' ],
+60 silly audit   setprototypeof: [ '1.2.0' ],
+60 silly audit   'side-channel': [ '1.1.0' ],
+60 silly audit   'side-channel-list': [ '1.0.0' ],
+60 silly audit   'side-channel-map': [ '1.0.1' ],
+60 silly audit   'side-channel-weakmap': [ '1.0.2' ],
+60 silly audit   split2: [ '4.2.0' ],
+60 silly audit   toidentifier: [ '1.0.1' ],
+60 silly audit   'toposort-class': [ '1.0.1' ],
+60 silly audit   tr46: [ '0.0.3' ],
+60 silly audit   'type-is': [ '2.0.1' ],
+60 silly audit   'uid-safe': [ '2.1.5' ],
+60 silly audit   uid2: [ '0.0.4' ],
+60 silly audit   'undici-types': [ '7.14.0' ],
+60 silly audit   unpipe: [ '1.0.0' ],
+60 silly audit   'utils-merge': [ '1.0.1' ],
+60 silly audit   uuid: [ '8.3.2' ],
+60 silly audit   validator: [ '13.15.15' ],
+60 silly audit   vary: [ '1.1.2' ],
+60 silly audit   'webidl-conversions': [ '3.0.1' ],
+60 silly audit   'whatwg-url': [ '5.0.0' ],
+60 silly audit   wkx: [ '0.5.0' ],
+60 silly audit   wrappy: [ '1.0.2' ],
+60 silly audit   xtend: [ '4.0.2' ],
+60 silly audit   ejs: [ '3.1.10' ],
+60 silly audit   express: [ '5.1.0' ],
+60 silly audit   jake: [ '10.9.4' ],
+60 silly audit   async: [ '3.2.6' ],
+60 silly audit   filelist: [ '1.0.4' ],
+60 silly audit   picocolors: [ '1.1.1' ],
+60 silly audit   minimatch: [ '5.1.6' ],
+60 silly audit   'brace-expansion': [ '2.0.2' ],
+60 silly audit   'balanced-match': [ '1.0.2' ]
+60 silly audit }
+61 http cache brace-expansion@https://registry.npmjs.org/brace-expansion/-/brace-expansion-2.0.2.tgz 0ms (cache hit)
+62 http cache picocolors@https://registry.npmjs.org/picocolors/-/picocolors-1.1.1.tgz 0ms (cache hit)
+63 http cache async@https://registry.npmjs.org/async/-/async-3.2.6.tgz 1ms (cache hit)
+64 http cache minimatch@https://registry.npmjs.org/minimatch/-/minimatch-5.1.6.tgz 0ms (cache hit)
+65 http cache balanced-match@https://registry.npmjs.org/balanced-match/-/balanced-match-1.0.2.tgz 0ms (cache hit)
+66 http cache filelist@https://registry.npmjs.org/filelist/-/filelist-1.0.4.tgz 0ms (cache hit)
+67 http cache jake@https://registry.npmjs.org/jake/-/jake-10.9.4.tgz 0ms (cache hit)
+68 http cache ejs@https://registry.npmjs.org/ejs/-/ejs-3.1.10.tgz 0ms (cache hit)
+69 silly tarball no local data for brace-expansion@https://registry.npmjs.org/brace-expansion/-/brace-expansion-2.0.2.tgz. Extracting by manifest.
+70 silly tarball no local data for picocolors@https://registry.npmjs.org/picocolors/-/picocolors-1.1.1.tgz. Extracting by manifest.
+71 silly tarball no local data for minimatch@https://registry.npmjs.org/minimatch/-/minimatch-5.1.6.tgz. Extracting by manifest.
+72 silly tarball no local data for filelist@https://registry.npmjs.org/filelist/-/filelist-1.0.4.tgz. Extracting by manifest.
+73 silly tarball no local data for jake@https://registry.npmjs.org/jake/-/jake-10.9.4.tgz. Extracting by manifest.
+74 silly tarball no local data for ejs@https://registry.npmjs.org/ejs/-/ejs-3.1.10.tgz. Extracting by manifest.
+75 http fetch GET 200 https://registry.npmjs.org/brace-expansion/-/brace-expansion-2.0.2.tgz 108ms (cache miss)
+76 http fetch GET 200 https://registry.npmjs.org/picocolors/-/picocolors-1.1.1.tgz 107ms (cache miss)
+77 http fetch GET 200 https://registry.npmjs.org/minimatch/-/minimatch-5.1.6.tgz 185ms (cache miss)
+78 http fetch GET 200 https://registry.npmjs.org/filelist/-/filelist-1.0.4.tgz 241ms (cache miss)
+79 http fetch GET 200 https://registry.npmjs.org/ejs/-/ejs-3.1.10.tgz 256ms (cache miss)
+80 http fetch GET 200 https://registry.npmjs.org/jake/-/jake-10.9.4.tgz 272ms (cache miss)
+81 http fetch POST 200 https://registry.npmjs.org/-/npm/v1/security/advisories/bulk 316ms
+82 silly audit report {
+82 silly audit report   validator: [
+82 silly audit report     {
+82 silly audit report       id: 1108959,
+82 silly audit report       url: 'https://github.com/advisories/GHSA-9965-vmph-33xx',
+82 silly audit report       title: 'validator.js has a URL validation bypass vulnerability in its isURL function',
+82 silly audit report       severity: 'moderate',
+82 silly audit report       vulnerable_versions: '<=13.15.15',
+82 silly audit report       cwe: [Array],
+82 silly audit report       cvss: [Object]
+82 silly audit report     }
+82 silly audit report   ]
+82 silly audit report }
+83 silly packumentCache corgi:https://registry.npmjs.org/validator cache-miss
+84 http fetch GET 200 https://registry.npmjs.org/validator 240ms (cache revalidated)
+85 silly packumentCache corgi:https://registry.npmjs.org/validator set size:167952 disposed:false
+86 silly packumentCache corgi:https://registry.npmjs.org/sequelize cache-miss
+87 http fetch GET 200 https://registry.npmjs.org/sequelize 87ms (cache revalidated)
+88 silly packumentCache corgi:https://registry.npmjs.org/sequelize set size:1342524 disposed:false
+89 silly ADD node_modules/balanced-match
+90 silly ADD node_modules/brace-expansion
+91 silly ADD node_modules/minimatch
+92 silly ADD node_modules/picocolors
+93 silly ADD node_modules/filelist
+94 silly ADD node_modules/async
+95 silly ADD node_modules/jake
+96 silly ADD node_modules/ejs
+97 verbose cwd /data/data/com.termux/files/home
+98 verbose os Linux 5.4.289-qgki-g634a7f715748
+99 verbose node v24.9.0
+100 verbose npm  v11.6.0
+101 verbose exit 0
+102 info ok

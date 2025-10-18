@@ -1,0 +1,69 @@
+0 verbose cli /data/data/com.termux/files/usr/bin/node /data/data/com.termux/files/usr/bin/npm
+1 info using npm@11.6.0
+2 info using node@v24.9.0
+3 silly config load:file:/data/data/com.termux/files/usr/lib/node_modules/npm/npmrc
+4 silly config load:file:/data/data/com.termux/files/home/.npmrc
+5 silly config load:file:/data/data/com.termux/files/usr/etc/npmrc
+6 verbose title npm install redis@4.6.7 connect-redis
+7 verbose argv "install" "redis@4.6.7" "connect-redis"
+8 verbose logfile logs-max:10 dir:/data/data/com.termux/files/home/.npm/_logs/2025-10-18T06_01_03_942Z-
+9 verbose logfile /data/data/com.termux/files/home/.npm/_logs/2025-10-18T06_01_03_942Z-debug-0.log
+10 silly logfile start cleaning logs, removing 1 files
+11 silly packumentCache heap:1174405120 maxSize:293601280 maxEntrySize:146800640
+12 silly logfile done cleaning log files
+13 silly idealTree buildDeps
+14 silly fetch manifest connect-redis@^9.0.0
+15 silly packumentCache full:https://registry.npmjs.org/connect-redis cache-miss
+16 http fetch GET 200 https://registry.npmjs.org/connect-redis 469ms (cache revalidated)
+17 silly packumentCache full:https://registry.npmjs.org/connect-redis set size:154918 disposed:false
+18 silly fetch manifest express-session@^1.18.2
+19 silly packumentCache full:https://registry.npmjs.org/express-session cache-miss
+20 http fetch GET 200 https://registry.npmjs.org/express-session 171ms (cache revalidated)
+21 silly packumentCache full:https://registry.npmjs.org/express-session set size:194964 disposed:false
+22 silly fetch manifest redis@4.6.7
+23 silly packumentCache full:https://registry.npmjs.org/redis cache-miss
+24 http fetch GET 200 https://registry.npmjs.org/redis 142ms (cache revalidated)
+25 silly packumentCache full:https://registry.npmjs.org/redis set size:365562 disposed:false
+26 silly fetch manifest redis@>=5
+27 silly packumentCache full:https://registry.npmjs.org/redis cache-hit
+28 verbose stack Error: unable to resolve dependency tree
+28 verbose stack     at #failPeerConflict (/data/data/com.termux/files/usr/lib/node_modules/npm/node_modules/@npmcli/arborist/lib/arborist/build-ideal-tree.js:1407:25)
+28 verbose stack     at #loadPeerSet (/data/data/com.termux/files/usr/lib/node_modules/npm/node_modules/@npmcli/arborist/lib/arborist/build-ideal-tree.js:1373:33)
+28 verbose stack     at async #buildDepStep (/data/data/com.termux/files/usr/lib/node_modules/npm/node_modules/@npmcli/arborist/lib/arborist/build-ideal-tree.js:917:11)
+28 verbose stack     at async Arborist.buildIdealTree (/data/data/com.termux/files/usr/lib/node_modules/npm/node_modules/@npmcli/arborist/lib/arborist/build-ideal-tree.js:182:7)
+28 verbose stack     at async Promise.all (index 1)
+28 verbose stack     at async Arborist.reify (/data/data/com.termux/files/usr/lib/node_modules/npm/node_modules/@npmcli/arborist/lib/arborist/reify.js:126:5)
+28 verbose stack     at async Install.exec (/data/data/com.termux/files/usr/lib/node_modules/npm/lib/commands/install.js:162:5)
+28 verbose stack     at async Npm.exec (/data/data/com.termux/files/usr/lib/node_modules/npm/lib/npm.js:208:9)
+28 verbose stack     at async module.exports (/data/data/com.termux/files/usr/lib/node_modules/npm/lib/cli/entry.js:60:5)
+29 error code ERESOLVE
+30 error ERESOLVE unable to resolve dependency tree
+31 error
+32 error While resolving: facebook-autopublisher@1.0.0
+32 error Found: redis@4.6.7[2m[22m
+32 error [2mnode_modules/redis[22m
+32 error   redis@"4.6.7" from the root project
+32 error
+32 error Could not resolve dependency:
+32 error [95mpeer[39m redis@">=5" from connect-redis@9.0.0[2m[22m
+32 error [2mnode_modules/connect-redis[22m
+32 error   connect-redis@"^9.0.0" from the root project
+32 error
+32 error Fix the upstream dependency conflict, or retry
+32 error this command with --force or --legacy-peer-deps
+32 error to accept an incorrect (and potentially broken) dependency resolution.
+33 error
+33 error
+33 error For a full report see:
+33 error /data/data/com.termux/files/home/.npm/_logs/2025-10-18T06_01_03_942Z-eresolve-report.txt
+34 silly unfinished npm timer reify 1760767265015
+35 silly unfinished npm timer reify:loadTrees 1760767265021
+36 silly unfinished npm timer idealTree:buildDeps 1760767265136
+37 silly unfinished npm timer idealTree:#root 1760767265137
+38 verbose cwd /data/data/com.termux/files/home
+39 verbose os Linux 5.4.289-qgki-g634a7f715748
+40 verbose node v24.9.0
+41 verbose npm  v11.6.0
+42 verbose exit 1
+43 verbose code 1
+44 error A complete log of this run can be found in: /data/data/com.termux/files/home/.npm/_logs/2025-10-18T06_01_03_942Z-debug-0.log
