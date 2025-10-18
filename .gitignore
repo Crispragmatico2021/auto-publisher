@@ -7,3 +7,4 @@ pm2.log
 .config/nvim.bak/
 .local/state/
 .cache/
+.ssh/
