@@ -5,213 +5,206 @@ const { Sequelize, DataTypes } = require('sequelize');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Configuración
+// Middleware
 app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, 'views'));
-app.use(express.static('public'));
+app.set('views', path.join(__dirname, 'views-payments'));
+app.use(express.static('public-payments'));
 app.use(express.urlencoded({ extended: true }));
 
-// PostgreSQL para Railway (usa variable de entorno)
+// Base de datos
 const databaseUrl = process.env.DATABASE_URL;
 const sequelize = new Sequelize(databaseUrl, {
   dialect: 'postgres',
   logging: false,
   dialectOptions: {
-    ssl: process.env.DATABASE_URL ? {
-      require: true,
-      rejectUnauthorized: false
-    } : false
+    ssl: process.env.DATABASE_URL ? { require: true, rejectUnauthorized: false } : false
   }
 });
 
-// Modelo de Publicaciones
-const Publicacion = sequelize.define('Publicacion', {
-  contenido: { type: DataTypes.TEXT, allowNull: false },
-  programadaPara: { type: DataTypes.DATE, allowNull: false },
-  estado: { type: DataTypes.STRING, defaultValue: 'pendiente' },
-  plataforma: { type: DataTypes.STRING, defaultValue: 'facebook' },
-  facebookPostId: { type: DataTypes.STRING, allowNull: true }
-}, {
-  tableName: 'publicaciones',
-  timestamps: true
+// Modelos
+const User = sequelize.define('User', {
+  ip: { type: DataTypes.STRING, allowNull: false },
+  email: { type: DataTypes.STRING, allowNull: false },
+  demoUsed: { type: DataTypes.BOOLEAN, defaultValue: false },
+  demoExpires: { type: DataTypes.DATE },
+  purchased: { type: DataTypes.BOOLEAN, defaultValue: false }
 });
 
+const Payment = sequelize.define('Payment', {
+  userId: { type: DataTypes.INTEGER, allowNull: false },
+  amount: { type: DataTypes.FLOAT, allowNull: false },
+  method: { type: DataTypes.STRING, allowNull: false }, // credit_card, debit_card
+  cardType: { type: DataTypes.STRING }, // visa, mastercard, etc.
+  status: { type: DataTypes.STRING, defaultValue: 'pending' },
+  ip: { type: DataTypes.STRING, allowNull: false }
+});
+
+// Configuración
+const PRODUCT_PRICE = 49.99;
+const DEMO_DAYS = 3;
+
+// Middleware de seguridad
+function checkIPLimit(req, res, next) {
+  const clientIP = req.ip || req.connection.remoteAddress;
+  
+  User.findOne({ where: { ip: clientIP } })
+    .then(user => {
+      if (user && user.demoUsed && !user.purchased) {
+        return res.render('blocked', { 
+          title: 'Acceso Bloqueado',
+          message: 'Ya has usado tu demo gratuita. Por favor realiza la compra.'
+        });
+      }
+      req.clientIP = clientIP;
+      next();
+    })
+    .catch(error => next(error));
+}
+
+// Detectar tipo de tarjeta
+function detectCardType(cardNumber) {
+  const cleanNumber = cardNumber.replace(/\s/g, '');
+  
+  if (/^4/.test(cleanNumber)) return 'visa';
+  if (/^5[1-5]/.test(cleanNumber)) return 'mastercard';
+  if (/^3[47]/.test(cleanNumber)) return 'amex';
+  if (/^6(?:011|5)/.test(cleanNumber)) return 'discover';
+  return 'unknown';
+}
+
+// Simular procesamiento de pago
+async function processPayment(paymentData) {
+  // En producción, aquí integrarías con Stripe/PayPal
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      // Simular éxito en el 95% de los casos
+      const success = Math.random() > 0.05;
+      resolve({
+        success: success,
+        transactionId: 'TX_' + Math.random().toString(36).substr(2, 9).toUpperCase(),
+        message: success ? 'Pago procesado exitosamente' : 'Error en el procesamiento del pago'
+      });
+    }, 2000);
+  });
+}
+
 // Rutas
-app.get('/', async (req, res) => {
+app.get('/', (req, res) => {
+  res.render('index', {
+    title: 'Auto-Publisher Pro - Demo Gratuita',
+    price: PRODUCT_PRICE,
+    demoDays: DEMO_DAYS
+  });
+});
+
+app.get('/demo', checkIPLimit, async (req, res) => {
   try {
-    const publicaciones = await Publicacion.findAll({
-      order: [['program
-mkdir views
-mkdir public
-cat > views/index.ejs << 'EOF'
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= title %></title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { 
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            padding: 20px;
-        }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-            overflow: hidden;
-        }
-        .header {
-            background: linear-gradient(135deg, #2c3e50, #34495e);
-            color: white;
-            padding: 30px;
-            text-align: center;
-        }
-        .header h1 {
-            font-size: 2.5em;
-            margin-bottom: 10px;
-        }
-        .nav {
-            background: #34495e;
-            padding: 15px;
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-        }
-        .nav a {
-            color: white;
-            text-decoration: none;
-            padding: 10px 20px;
-            border-radius: 25px;
-            transition: background 0.3s;
-        }
-        .nav a:hover {
-            background: #2c3e50;
-        }
-        .content {
-            padding: 30px;
-        }
-        .card {
-            background: #f8f9fa;
-            border-radius: 10px;
-            padding: 20px;
-            margin-bottom: 20px;
-            border-left: 5px solid #667eea;
-        }
-        .publicacion {
-            background: white;
-            border: 1px solid #e9ecef;
-            border-radius: 8px;
-            padding: 15px;
-            margin-bottom: 10px;
-            display: flex;
-            justify-content: between;
-            align-items: center;
-        }
-        .publicacion.pendiente { border-left: 5px solid #ffc107; }
-        .publicacion.publicada { border-left: 5px solid #28a745; }
-        .btn {
-            background: #667eea;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            text-decoration: none;
-            display: inline-block;
-        }
-        .form-group {
-            margin-bottom: 15px;
-        }
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
-        .form-group input, .form-group textarea {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-        }
-        .alert {
-            padding: 15px;
-            border-radius: 5px;
-            margin-bottom: 20px;
-        }
-        .alert.success { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
-        .alert.error { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <div class="header">
-            <h1>📱 <%= title %></h1>
-            <p>Gestión visual de publicaciones programadas</p>
-        </div>
-        
-        <div class="nav">
-            <a href="/">🏠 Inicio</a>
-            <a href="/estadisticas">📊 Estadísticas</a>
-        </div>
-        
-        <div class="content">
-            <% if (typeof success !== 'undefined') { %>
-                <div class="alert success">
-                    ✅ <%= success %>
-                </div>
-            <% } %>
-            
-            <% if (typeof error !== 'undefined') { %>
-                <div class="alert error">
-                    ❌ <%= error %>
-                </div>
-            <% } %>
-            
-            <div class="card">
-                <h2>➕ Agregar Nueva Publicación</h2>
-                <form action="/agregar-publicacion" method="POST">
-                    <div class="form-group">
-                        <label for="contenido">Contenido:</label>
-                        <textarea name="contenido" id="contenido" rows="3" placeholder="Escribe tu publicación para Facebook..." required></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="fecha">Fecha:</label>
-                        <input type="date" name="fecha" id="fecha" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="hora">Hora:</label>
-                        <input type="time" name="hora" id="hora" required>
-                    </div>
-                    <button type="submit" class="btn">💾 Guardar Publicación</button>
-                </form>
-            </div>
-            
-            <div class="card">
-                <h2>📋 Publicaciones Programadas (<%= publicaciones.length %>)</h2>
-                <% if (publicaciones.length === 0) { %>
-                    <p>No hay publicaciones programadas.</p>
-                <% } else { %>
-                    <% publicaciones.forEach(publicacion => { %>
-                        <div class="publicacion <%= publicacion.estado %>">
-                            <div style="flex: 1;">
-                                <strong><%= publicacion.contenido %></strong><br>
-                                <small>🕐 Programada: <%= publicacion.programadaPara.toLocaleString() %></small><br>
-                                <small>📊 Estado: <strong><%= publicacion.estado %></strong></small>
-                            </div>
-                            <div>
-                                <span class="badge"><%= publicacion.id %></span>
-                            </div>
-                        </div>
-                    <% }); %>
-                <% } %>
-            </div>
-        </div>
-    </div>
-</body>
-</html>
+    const clientIP = req.clientIP;
+    
+    let user = await User.findOne({ where: { ip: clientIP } });
+    
+    if (!user) {
+      user = await User.create({
+        ip: clientIP,
+        email: `demo-${Date.now()}@autopublisher.com`,
+        demoExpires: new Date(Date.now() + DEMO_DAYS * 24 * 60 * 60 * 1000)
+      });
+    } else if (!user.demoUsed) {
+      user.demoUsed = true;
+      user.demoExpires = new Date(Date.now() + DEMO_DAYS * 24 * 60 * 60 * 1000);
+      await user.save();
+    }
+
+    res.render('demo', {
+      title: 'Demo Auto-Publisher',
+      user: user,
+      expiresIn: DEMO_DAYS
+    });
+  } catch (error) {
+    res.status(500).render('error', { error: error.message });
+  }
+});
+
+app.get('/comprar', checkIPLimit, async (req, res) => {
+  const clientIP = req.clientIP;
+  const user = await User.findOne({ where: { ip: clientIP } });
+  
+  res.render('checkout', {
+    title: 'Comprar Auto-Publisher',
+    price: PRODUCT_PRICE,
+    user: user,
+    clientIP: clientIP
+  });
+});
+
+app.post('/procesar-pago', checkIPLimit, async (req, res) => {
+  try {
+    const { cardNumber, expiry, cvv, email, paymentMethod } = req.body;
+    const clientIP = req.clientIP;
+    
+    // Validaciones
+    if (!cardNumber || !expiry || !cvv || !paymentMethod) {
+      return res.render('error', { error: 'Todos los campos son requeridos' });
+    }
+
+    const user = await User.findOne({ where: { ip: clientIP } });
+    const cardType = detectCardType(cardNumber);
+    
+    // Procesar pago
+    const paymentResult = await processPayment({
+      cardNumber: cardNumber.replace(/\s/g, ''),
+      expiry,
+      cvv,
+      amount: PRODUCT_PRICE,
+      method: paymentMethod,
+      cardType: cardType
+    });
+
+    if (!paymentResult.success) {
+      return res.render('error', { 
+        error: 'Error en el pago: ' + paymentResult.message 
+      });
+    }
+
+    // Crear registro de pago
+    const payment = await Payment.create({
+      userId: user.id,
+      amount: PRODUCT_PRICE,
+      method: paymentMethod,
+      cardType: cardType,
+      ip: clientIP,
+      status: 'completed'
+    });
+
+    // Activar usuario
+    user.purchased = true;
+    user.email = email;
+    await user.save();
+
+    res.render('success', {
+      title: '¡Pago Exitoso!',
+      payment: payment,
+      user: user,
+      transactionId: paymentResult.transactionId
+    });
+  } catch (error) {
+    res.render('error', { error: 'Error procesando el pago: ' + error.message });
+  }
+});
+
+// Inicializar servidor
+async function startServer() {
+  try {
+    await sequelize.authenticate();
+    await sequelize.sync({ force: false });
+    console.log('✅ Base de datos conectada');
+    
+    app.listen(PORT, () => {
+      console.log(`🚀 Sistema de pagos ejecutándose en puerto ${PORT}`);
+    });
+  } catch (error) {
+    console.error('❌ Error iniciando servidor:', error.message);
+  }
+}
+
+startServer();

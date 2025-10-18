@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            text-align: center;
+        }
+        .success-container {
+            background: rgba(255,255,255,0.1);
+            padding: 3rem;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            max-width: 600px;
+            width: 100%;
+        }
+        .success-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+        .receipt {
+            background: rgba(255,255,255,0.2);
+            padding: 2rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+            text-align: left;
+        }
+        .btn {
+            background: white;
+            color: #27ae60;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            display: inline-block;
+            margin: 1rem;
+            transition: transform 0.3s;
+        }
+        .btn:hover { 
+            transform: translateY(-3px); 
+            background: #f8f9fa;
+        }
+    </style>
+</head>
+<body>
+    <div class="success-container">
+        <div class="success-icon">🎉</div>
+        <h1>¡Pago Exitoso!</h1>
+        <p>Tu compra de Auto-Publisher Pro ha sido procesada correctamente</p>
+        
+        <div class="receipt">
+            <h3>📋 Recibo de Compra</h3>
+            <p><strong>Producto:</strong> Auto-Publisher Pro</p>
+            <p><strong>Monto:</strong> $<%= payment.amount %></p>
+            <p><strong>Método:</strong> Tarjeta de <%= payment.method === 'credit_card' ? 'Crédito' : 'Débito' %></p>
+            <p><strong>Tipo:</strong> <%= payment.cardType %></p>
+            <p><strong>Transacción:</strong> <%= transactionId %></p>
+            <p><strong>Email:</strong> <%= user.email %></p>
+            <p><strong>Fecha:</strong> <%= new Date().toLocaleString() %></p>
+        </div>
+
+        <div style="margin: 2rem 0;">
+            <h3>🚀 Acceso a tu Cuenta Premium</h3>
+            <p>Tu cuenta ha sido activada. Ya puedes usar todas las funciones premium.</p>
+            <a href="https://TU-APP-PREMIUM.railway.app" class="btn" target="_blank">
+                Acceder a Auto-Publisher Pro
+            </a>
+        </div>
+
+        <div style="font-size: 0.9rem; opacity: 0.8;">
+            <p>📧 Recibirás un email de confirmación en <%= user.email %></p>
+            <p>🛡️ Transacción segura procesada</p>
+        </div>
+    </div>
+</body>
+</html>
