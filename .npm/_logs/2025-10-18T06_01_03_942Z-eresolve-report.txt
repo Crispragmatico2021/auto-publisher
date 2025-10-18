@@ -1,0 +1,18 @@
+'Log files:
+/data/data/com.termux/files/home/.npm/_logs/2025-10-18T06_01_03_942Z-debug-0.log
+
+# npm resolution error report
+
+While resolving: facebook-autopublisher@1.0.0
+Found: redis@4.6.7
+node_modules/redis
+  redis@"4.6.7" from the root project
+
+Could not resolve dependency:
+peer redis@">=5" from connect-redis@9.0.0
+node_modules/connect-redis
+  connect-redis@"^9.0.0" from the root project
+
+Fix the upstream dependency conflict, or retry
+this command with --force or --legacy-peer-deps
+to accept an incorrect (and potentially broken) dependency resolution.

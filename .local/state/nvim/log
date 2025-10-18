@@ -1,0 +1,9 @@
+WRN 2025-10-18T00:36:34.360 ?.8445     server_start:193: Failed to start server: no such file or directory: /data/data/com.termux/files/home/.docker/
+WRN 2025-10-18T00:36:50.564 ?.8525     server_start:193: Failed to start server: no such file or directory: /data/data/com.termux/files/home/.docker/
+WRN 2025-10-18T00:40:49.973 ?.9731     server_start:193: Failed to start server: no such file or directory: /data/data/com.termux/files/home/.docker/
+WRN 2025-10-18T00:41:55.030 ?.10113    server_start:193: Failed to start server: no such file or directory: /data/data/com.termux/files/home/.docker/
+WRN 2025-10-18T00:42:08.415 ?.10151    server_start:193: Failed to start server: no such file or directory: /data/data/com.termux/files/home/.docker/
+WRN 2025-10-18T00:48:30.224 ?.12726    server_start:193: Failed to start server: no such file or directory: /data/data/com.termux/files/home/.docker/
+WRN 2025-10-18T01:51:23.864 ?.2936     server_start:193: Failed to start server: no such file or directory: /data/data/com.termux/files/home/.docker/
+WRN 2025-10-18T01:51:46.957 ?.3000     server_start:193: Failed to start server: no such file or directory: /data/data/com.termux/files/home/.docker/
+WRN 2025-10-18T01:52:21.648 ?.3165     server_start:193: Failed to start server: no such file or directory: /data/data/com.termux/files/home/.docker/
