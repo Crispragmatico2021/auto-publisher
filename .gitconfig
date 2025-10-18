@@ -1,5 +1,7 @@
 [user]
-	name = Crispragmatico2021
-	email = tu_email@ejemplo.com
+	name = crispragmatico2021
+	email = crispragmatico2021@gmail.com
 [core]
 	editor = nvim
+[init]
+	defaultBranch = main
