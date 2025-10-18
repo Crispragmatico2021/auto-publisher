@@ -50,3 +50,8 @@ node_modules/
 bfg.jar
 auto-publisher/
 .config/nvim.bak/
+*.tmp
+.DS_Store
+*.swp
+.vscode/
+.idea/
