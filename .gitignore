@@ -44,3 +44,7 @@ node_modules/
 
 # next.js build output
 .next
+.local/state/lesshst
+.git.bfg-report/
+*.apk
+bfg.jar
